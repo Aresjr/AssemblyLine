@@ -1,7 +1,9 @@
 package com.example.projeto.task;
 
 import com.example.projeto.builder.ArquivoAssemblyBuilder;
+import com.example.projeto.factory.LinhaMontagemFactory;
 import com.example.projeto.model.Atividade;
+import com.example.projeto.model.LinhaMontagem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +26,7 @@ public class LeituraArquivoAssemblyTask {
     @Scheduled(fixedRateString = "${arquivo.tempo.leitura}")
     public void leArquivoAssembly() {
 
-        String caminhoArquivoLeitura = messageSource.getMessage("arquivo.caminho.leitura", null, Locale.getDefault());
+        String caminhoArquivoLeitura = messageSource.getMessage("arquivo.caminho.arquivo.leitura", null, Locale.getDefault());
         ArquivoAssemblyBuilder arquivoBuilder = new ArquivoAssemblyBuilder(messageSource);
         List<Atividade> atividades = new ArrayList<>();
         try {
@@ -34,9 +36,16 @@ public class LeituraArquivoAssemblyTask {
         }
 
         if(atividades.size() > 0){
-            arquivoBuilder.exportaAtividadesArquivo(atividades);
+            String caminhoArquivoSaida = messageSource.getMessage("arquivo.caminho.arquivo.saida", null, Locale.getDefault());
+            LinhaMontagemFactory linhaMontagemFactory = new LinhaMontagemFactory(messageSource);
+            List<LinhaMontagem> linhasMontagem = linhaMontagemFactory.criaLinhasMontagem(atividades);
+            try {
+                arquivoBuilder.exportaLinhasMontagemArquivo(caminhoArquivoSaida, linhasMontagem);
+            } catch (IOException e) {
+                log.error(messageSource.getMessage("log.arquivo.impossivel.gravar.arquivo", new String[]{caminhoArquivoSaida}, Locale.getDefault()));
+            }
         } else {
-            log.info(messageSource.getMessage("log.arquivo.nenhuma.atividade", null, Locale.getDefault()));
+            log.error(messageSource.getMessage("log.arquivo.nenhuma.atividade", null, Locale.getDefault()));
         }
     }
 }

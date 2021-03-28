@@ -48,7 +48,7 @@ public class AtividadeFactory {
         String[] valoresDescricaoAtividade = ArrayUtils.remove(valores, valores.length-1);
         String descricaoAtividade = String.join(separador, valoresDescricaoAtividade);
 
-        Atividade atividade = new Atividade(descricaoAtividade, duracao, manutencao);
+        Atividade atividade = new Atividade(descricaoAtividade, duracao, manutencao, null);
         log.info(atividade.toString());
         return atividade;
     }

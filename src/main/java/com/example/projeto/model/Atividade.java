@@ -1,15 +1,19 @@
 package com.example.projeto.model;
 
+import java.util.Date;
+
 public class Atividade {
 
     String descricao;
     Integer duracao;
     Boolean manutencao;
+    Date horarioInicio;
 
-    public Atividade(String descricao, Integer duracao, Boolean manutencao) {
+    public Atividade(String descricao, Integer duracao, Boolean manutencao, Date horarioInicio) {
         this.descricao = descricao;
         this.duracao = duracao;
         this.manutencao = manutencao;
+        this.horarioInicio = horarioInicio;
     }
 
     public String getDescricao() {
@@ -36,12 +40,21 @@ public class Atividade {
         this.manutencao = manutencao;
     }
 
+    public Date getHorarioInicio() {
+        return horarioInicio;
+    }
+
+    public void setHorarioInicio(Date horarioInicio) {
+        this.horarioInicio = horarioInicio;
+    }
+
     @Override
     public String toString() {
         return "Atividade{" +
                 "descricao='" + descricao + '\'' +
                 ", duracao=" + duracao +
                 ", manutencao=" + manutencao +
+                ", horarioInicio=" + horarioInicio +
                 '}';
     }
 }

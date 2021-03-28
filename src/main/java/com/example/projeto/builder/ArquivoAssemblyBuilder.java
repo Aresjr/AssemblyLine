@@ -1,6 +1,7 @@
 package com.example.projeto.builder;
 
 import com.example.projeto.factory.AtividadeFactory;
+import com.example.projeto.factory.LinhaAtividadeFactory;
 import com.example.projeto.factory.LinhaMontagemFactory;
 import com.example.projeto.interf.ArquivoBuilderInterface;
 import com.example.projeto.model.Atividade;
@@ -10,10 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.MessageSource;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,7 +45,21 @@ public class ArquivoAssemblyBuilder implements ArquivoBuilderInterface {
         return atividades;
     }
 
-    public void exportaAtividadesArquivo(List<Atividade> atividades) {
-        List<LinhaMontagem> linhasMontagem = new ArrayList<>();
+    public void exportaLinhasMontagemArquivo(String caminhoArquivoSaida, List<LinhaMontagem> linhasMontagem) throws IOException {
+
+        FileWriter writer = null;
+        try {
+            writer = new FileWriter(caminhoArquivoSaida);
+            StringBuilder conteudoArquivo = new StringBuilder();
+            for(LinhaMontagem linhaMontagem : linhasMontagem){
+                conteudoArquivo.append(linhaMontagem.toString());
+                conteudoArquivo.append("\n");
+            }
+            writer.write(conteudoArquivo.toString());
+        } finally {
+            if(writer != null){
+                writer.close();
+            }
+        }
     }
 }
