@@ -21,9 +21,7 @@ public class AtividadeFactory {
         this.messageSource = messageSource;
     }
 
-    public Atividade criaAtividade(String linhaArquivo) throws InvalidFormatException {
-
-        messageSource.getMessage("log.arquivo.lendo", null, Locale.getDefault());
+    public Atividade criaAtividadeDaLinhaDeArquivo(String linhaArquivo) throws InvalidFormatException {
 
         int duracao;
         boolean manutencao = false;
