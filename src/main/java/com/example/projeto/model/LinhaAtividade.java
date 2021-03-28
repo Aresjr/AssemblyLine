@@ -6,8 +6,8 @@ public class LinhaAtividade extends Atividade {
 
     Date horarioInicio;
 
-    public LinhaAtividade(String descricao, Integer duracao) {
-        super(descricao, duracao);
+    public LinhaAtividade(Atividade atividade) {
+        super(atividade.getDescricao(), atividade.getDuracao(), atividade.getManutencao());
     }
 
     public Date getHorarioInicio() {
@@ -23,6 +23,7 @@ public class LinhaAtividade extends Atividade {
         return "LinhaAtividade{" +
                 "descricao='" + descricao + '\'' +
                 ", duracao=" + duracao +
+                ", manutencao=" + manutencao +
                 ", horarioInicio=" + horarioInicio +
                 '}';
     }

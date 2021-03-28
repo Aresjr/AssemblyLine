@@ -4,10 +4,12 @@ public class Atividade {
 
     String descricao;
     Integer duracao;
+    Boolean manutencao;
 
-    public Atividade(String descricao, Integer duracao) {
+    public Atividade(String descricao, Integer duracao, Boolean manutencao) {
         this.descricao = descricao;
         this.duracao = duracao;
+        this.manutencao = manutencao;
     }
 
     public String getDescricao() {
@@ -26,11 +28,20 @@ public class Atividade {
         this.duracao = duracao;
     }
 
+    public Boolean getManutencao() {
+        return manutencao;
+    }
+
+    public void setManutencao(Boolean manutencao) {
+        this.manutencao = manutencao;
+    }
+
     @Override
     public String toString() {
         return "Atividade{" +
                 "descricao='" + descricao + '\'' +
                 ", duracao=" + duracao +
+                ", manutencao=" + manutencao +
                 '}';
     }
 }

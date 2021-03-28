@@ -1,8 +1,8 @@
 package com.example.projeto.task;
 
 import com.example.projeto.builder.ArquivoAssemblyBuilder;
+import com.example.projeto.factory.AtividadeFactory;
 import com.example.projeto.model.Atividade;
-import com.example.projeto.model.LinhaAtividade;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ public class LeituraArquivoAssemblyTask {
     @Autowired
     private MessageSource messageSource;
 
-    @Scheduled(fixedRateString = "${application.properties.tempo.leitura}")
+    @Scheduled(fixedRateString = "${arquivo.tempo.leitura}")
     public void leArquivoAssembly() {
 
         String caminhoArquivoLeitura = messageSource.getMessage("arquivo.caminho.leitura", null, Locale.getDefault());
