@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.MessageSource;
 
+import java.time.LocalTime;
 import java.util.Locale;
 
 public class AtividadeFactory {
@@ -51,6 +52,14 @@ public class AtividadeFactory {
         Atividade atividade = new Atividade(descricaoAtividade, duracao, manutencao, null);
         log.info(atividade.toString());
         return atividade;
+    }
+
+    public Atividade criaAtividadeAlmoco() {
+        return new Atividade("Almoço", 60, false, LocalTime.of(12, 0));
+    }
+
+    public Atividade criaGinasticaLaboral(LocalTime horarioInicio) {
+        return new Atividade("Ginástica Laboral", 5, false, horarioInicio);
     }
 
 }

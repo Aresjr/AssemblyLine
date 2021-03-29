@@ -1,15 +1,15 @@
 package com.example.projeto.model;
 
-import java.util.Date;
+import java.time.LocalTime;
 
 public class Atividade {
 
     String descricao;
     Integer duracao;
     Boolean manutencao;
-    Date horarioInicio;
+    LocalTime horarioInicio;
 
-    public Atividade(String descricao, Integer duracao, Boolean manutencao, Date horarioInicio) {
+    public Atividade(String descricao, Integer duracao, Boolean manutencao, LocalTime horarioInicio) {
         this.descricao = descricao;
         this.duracao = duracao;
         this.manutencao = manutencao;
@@ -40,11 +40,11 @@ public class Atividade {
         this.manutencao = manutencao;
     }
 
-    public Date getHorarioInicio() {
+    public LocalTime getHorarioInicio() {
         return horarioInicio;
     }
 
-    public void setHorarioInicio(Date horarioInicio) {
+    public void setHorarioInicio(LocalTime horarioInicio) {
         this.horarioInicio = horarioInicio;
     }
 

@@ -1,7 +1,6 @@
 package com.example.projeto.builder;
 
 import com.example.projeto.factory.AtividadeFactory;
-import com.example.projeto.factory.LinhaAtividadeFactory;
 import com.example.projeto.factory.LinhaMontagemFactory;
 import com.example.projeto.interf.ArquivoBuilderInterface;
 import com.example.projeto.model.Atividade;

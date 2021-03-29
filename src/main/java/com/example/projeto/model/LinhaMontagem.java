@@ -1,17 +1,15 @@
 package com.example.projeto.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LinhaMontagem {
 
     Integer sequencia;
-    List<Atividade> linhasAtividades;
+    List<Atividade> linhasAtividades = new ArrayList<>();
 
-    public LinhaMontagem(){}
-
-    public LinhaMontagem(Integer sequencia, List<Atividade> linhasAtividades) {
+    public LinhaMontagem(Integer sequencia) {
         this.sequencia = sequencia;
-        this.linhasAtividades = linhasAtividades;
     }
 
     public Integer getSequencia() {
@@ -29,4 +27,5 @@ public class LinhaMontagem {
     public void setLinhasAtividades(List<Atividade> linhasAtividades) {
         this.linhasAtividades = linhasAtividades;
     }
+
 }
