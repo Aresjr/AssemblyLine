@@ -7,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.MessageSource;
 
-import java.time.LocalTime;
 import java.util.Locale;
 
 public class AtividadeFactory {
@@ -17,7 +16,7 @@ public class AtividadeFactory {
     private static final String separador = " ";
     private static final String sinalizaManutencao = "maintenance";
     private static final String sinalizaMinutos = "min";
-    private static final int duracaoAlmoco = 60;
+    private static final int duracaoManutencao = 15;
 
     public AtividadeFactory(MessageSource messageSource){
         this.messageSource = messageSource;
@@ -32,7 +31,7 @@ public class AtividadeFactory {
         String duracaoOuManutencao = valores[valores.length-1];
         if(duracaoOuManutencao.equals(sinalizaManutencao)) {
             manutencao = true;
-            duracao = 15;
+            duracao = duracaoManutencao;
             valores = ArrayUtils.remove(valores, valores.length-1);
         } else {
             if(!duracaoOuManutencao.contains(sinalizaMinutos)){
@@ -53,16 +52,6 @@ public class AtividadeFactory {
         Atividade atividade = new Atividade(descricaoAtividade, duracao, manutencao, null);
         log.info(atividade.toString());
         return atividade;
-    }
-
-    public Atividade criaAtividadeAlmoco() {
-        String descricaoAlmoco = messageSource.getMessage("atividade.descricao.almoco", null, Locale.getDefault());
-        return new Atividade(descricaoAlmoco, duracaoAlmoco, false, LocalTime.of(12, 0));
-    }
-
-    public Atividade criaGinasticaLaboral(LocalTime horarioInicio) {
-        String descricaoGinasticaLaboral = messageSource.getMessage("atividade.descricao.almoco", null, Locale.getDefault());
-        return new Atividade("Ginástica Laboral", 5, false, horarioInicio);
     }
 
 }

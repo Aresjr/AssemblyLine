@@ -17,10 +17,12 @@ import java.util.List;
 public class ArquivoAssemblyBuilder implements ArquivoBuilderInterface {
 
     private static final Logger log = LoggerFactory.getLogger(ArquivoAssemblyBuilder.class);
+    private MessageSource messageSource;
     private final AtividadeFactory atividadeFactory;
     private final LinhaMontagemFactory linhaMontagemFactory;
 
     public ArquivoAssemblyBuilder(MessageSource messageSource){
+        this.messageSource = messageSource;
         this.atividadeFactory = new AtividadeFactory(messageSource);
         this.linhaMontagemFactory = new LinhaMontagemFactory(messageSource);
     }
@@ -52,7 +54,7 @@ public class ArquivoAssemblyBuilder implements ArquivoBuilderInterface {
             StringBuilder conteudoArquivo = new StringBuilder();
             for(LinhaMontagem linhaMontagem : linhasMontagem){
                 conteudoArquivo.append("\n");
-                conteudoArquivo.append(linhaMontagem.linhasArquivo());
+                conteudoArquivo.append(linhaMontagem.linhasArquivo(messageSource));
             }
             writer.write(conteudoArquivo.toString());
         } finally {

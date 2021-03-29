@@ -1,7 +1,10 @@
 package com.example.projeto.model;
 
+import org.springframework.context.MessageSource;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class LinhaMontagem {
 
@@ -36,10 +39,11 @@ public class LinhaMontagem {
                 '}';
     }
 
-    public String linhasArquivo() {
-        StringBuilder linhasArquivo = new StringBuilder(String.format("Linha de montagem %d:\n", sequencia));
+    public String linhasArquivo(MessageSource messageSource) {
+        StringBuilder linhasArquivo = new StringBuilder(messageSource.getMessage("linha.montagem.descricao", null, Locale.getDefault()));
+        linhasArquivo.append(String.format(" %d:\n", sequencia));
         for(Atividade atividade : linhasAtividades) {
-            linhasArquivo.append(atividade.linhasArquivo());
+            linhasArquivo.append(atividade.linhasArquivo(messageSource));
             linhasArquivo.append("\n");
         }
         return linhasArquivo.toString();

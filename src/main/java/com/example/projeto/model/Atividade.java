@@ -1,6 +1,9 @@
 package com.example.projeto.model;
 
+import org.springframework.context.MessageSource;
+
 import java.time.LocalTime;
+import java.util.Locale;
 
 public class Atividade {
 
@@ -58,7 +61,8 @@ public class Atividade {
                 '}';
     }
 
-    public String linhasArquivo() {
-        return horarioInicio.toString() + " " + descricao + " " + duracao + "min";
+    public String linhasArquivo(MessageSource messageSource) {
+        return horarioInicio.toString() + " " + descricao + " " +
+                (manutencao ? messageSource.getMessage("atividade.descricao.manutencao", null, Locale.getDefault()) : duracao + "min");
     }
 }
