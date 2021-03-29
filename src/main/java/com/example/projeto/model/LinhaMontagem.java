@@ -28,4 +28,20 @@ public class LinhaMontagem {
         this.linhasAtividades = linhasAtividades;
     }
 
+    @Override
+    public String toString() {
+        return "LinhaMontagem{" +
+                "sequencia=" + sequencia +
+                ", linhasAtividades=" + linhasAtividades +
+                '}';
+    }
+
+    public String linhasArquivo() {
+        StringBuilder linhasArquivo = new StringBuilder(String.format("Linha de montagem %d:\n", sequencia));
+        for(Atividade atividade : linhasAtividades) {
+            linhasArquivo.append(atividade.linhasArquivo());
+            linhasArquivo.append("\n");
+        }
+        return linhasArquivo.toString();
+    }
 }

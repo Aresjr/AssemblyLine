@@ -17,6 +17,7 @@ public class AtividadeFactory {
     private static final String separador = " ";
     private static final String sinalizaManutencao = "maintenance";
     private static final String sinalizaMinutos = "min";
+    private static final int duracaoAlmoco = 60;
 
     public AtividadeFactory(MessageSource messageSource){
         this.messageSource = messageSource;
@@ -55,10 +56,12 @@ public class AtividadeFactory {
     }
 
     public Atividade criaAtividadeAlmoco() {
-        return new Atividade("Almoço", 60, false, LocalTime.of(12, 0));
+        String descricaoAlmoco = messageSource.getMessage("atividade.descricao.almoco", null, Locale.getDefault());
+        return new Atividade(descricaoAlmoco, duracaoAlmoco, false, LocalTime.of(12, 0));
     }
 
     public Atividade criaGinasticaLaboral(LocalTime horarioInicio) {
+        String descricaoGinasticaLaboral = messageSource.getMessage("atividade.descricao.almoco", null, Locale.getDefault());
         return new Atividade("Ginástica Laboral", 5, false, horarioInicio);
     }
 

@@ -57,4 +57,8 @@ public class Atividade {
                 ", horarioInicio=" + horarioInicio +
                 '}';
     }
+
+    public String linhasArquivo() {
+        return horarioInicio.toString() + " " + descricao + " " + duracao + "min";
+    }
 }

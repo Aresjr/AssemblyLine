@@ -36,9 +36,10 @@ public class LeituraArquivoAssemblyTask {
         }
 
         if(atividades.size() > 0){
-            String caminhoArquivoSaida = messageSource.getMessage("arquivo.caminho.arquivo.saida", null, Locale.getDefault());
             LinhaMontagemFactory linhaMontagemFactory = new LinhaMontagemFactory(messageSource);
             List<LinhaMontagem> linhasMontagem = linhaMontagemFactory.criaLinhasMontagem(atividades);
+
+            String caminhoArquivoSaida = messageSource.getMessage("arquivo.caminho.arquivo.saida", null, Locale.getDefault());
             try {
                 arquivoBuilder.exportaLinhasMontagemArquivo(caminhoArquivoSaida, linhasMontagem);
             } catch (IOException e) {

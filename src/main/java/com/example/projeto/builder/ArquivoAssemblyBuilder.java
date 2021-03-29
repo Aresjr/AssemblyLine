@@ -51,8 +51,8 @@ public class ArquivoAssemblyBuilder implements ArquivoBuilderInterface {
             writer = new FileWriter(caminhoArquivoSaida);
             StringBuilder conteudoArquivo = new StringBuilder();
             for(LinhaMontagem linhaMontagem : linhasMontagem){
-                conteudoArquivo.append(linhaMontagem.toString());
                 conteudoArquivo.append("\n");
+                conteudoArquivo.append(linhaMontagem.linhasArquivo());
             }
             writer.write(conteudoArquivo.toString());
         } finally {
